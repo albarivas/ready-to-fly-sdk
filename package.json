@@ -1,0 +1,36 @@
+{
+    "name": "ready-to-fly-apex-sdk",
+    "version": "1.0.0",
+    "description": "Ready to Fly (Apex SDK version)",
+    "scripts": {
+        "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "prettier:verify": "prettier --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "postinstall": "husky install",
+        "precommit": "lint-staged"
+    },
+    "lint-staged": {
+        "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
+            "prettier --write"
+        ]
+    },
+    "author": "salesforce.com",
+    "license": "CC0-1.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/trailheadapps/ready-to-fly-sdk"
+    },
+    "devDependencies": {
+        "@prettier/plugin-xml": "^2.2.0",
+        "@salesforce/eslint-plugin-lightning": "^1.0.0",
+        "eslint": "^8.23.0",
+        "eslint-plugin-import": "^2.26.0",
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.3",
+        "prettier": "^2.7.1",
+        "prettier-plugin-apex": "^1.10.0"
+    },
+    "volta": {
+        "node": "14.17.3",
+        "npm": "6.14.13"
+    }
+}

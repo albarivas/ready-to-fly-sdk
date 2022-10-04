@@ -7,7 +7,7 @@ Id myUserId = UserInfo.getUserId();
 
 // Retrieve / Delete existing records to allow re-execution of script
 String subordinateName = 'jhoffman' + myUserId + '@trailhead.com';
-String managerName = 'mchang' + myUserId + '@trailhead.com';
+String managerName = 'pchittum' + myUserId + '@trailhead.com';
 List<User> subordinates = [SELECT Id FROM User WHERE Username = :subordinateName];
 List<User> managers = [SELECT Id FROM User WHERE Username = :managerName];
 delete [SELECT Id FROM Travel_Request__c];
@@ -34,10 +34,10 @@ if (subordinates.size() == 0) {
 User manager;
 if (managers.size() == 0) {
   manager = new User();
-  manager.FirstName = 'Maria';
-  manager.LastName = 'Chang';
-  manager.Email = 'mchang@trailhead.com';
-  manager.Alias = 'mchang';
+  manager.FirstName = 'Peter';
+  manager.LastName = 'Chittum';
+  manager.Email = 'pchittum@trailhead.com';
+  manager.Alias = 'pchit';
   manager.Username = managerName;
   manager.LocaleSidKey = 'en_US';
   manager.TimeZoneSidKey = 'GMT';

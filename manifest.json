@@ -1,6 +1,6 @@
 {
     "display_information": {
-        "name": "Ready to Fly (SDK version) 2",
+        "name": "Ready to Fly (Apex SDK version)",
         "description": "Ready to Fly app using the Apex SDK for Slack"
     },
     "features": {
@@ -10,21 +10,21 @@
             "messages_tab_read_only_enabled": false
         },
         "bot_user": {
-            "display_name": "Ready to Fly (SDK version) 2",
+            "display_name": "Ready to Fly (Apex SDK)",
             "always_online": false
         },
-        "slash_commands": [
+        "shortcuts": [
             {
-                "command": "/apex-hello",
-                "url": "https://slack-apps.salesforce.com:9443/a/A044Z58MJKB",
-                "description": "Say Hello",
-                "should_escape": false
+                "name": "Create Travel Request",
+                "type": "global",
+                "callback_id": "apex-create-travel-request-global",
+                "description": "Create a travel request using a slack global shortcut."
             }
         ]
     },
     "oauth_config": {
         "redirect_urls": [
-            "https://auth.slack-apps.salesforce.com/slack_oauth_callback/A044Z58MJKB"
+            "https://auth.slack-apps.salesforce.com/slack_oauth_callback/A044XMTSD53"
         ],
         "scopes": {
             "user": ["reactions:read", "chat:write"],
@@ -40,7 +40,7 @@
     },
     "settings": {
         "event_subscriptions": {
-            "request_url": "https://slack-apps.salesforce.com:9443/a/A044Z58MJKB",
+            "request_url": "https://slack-apps.salesforce.com:9443/a/A044XMTSD53",
             "bot_events": [
                 "app_home_opened",
                 "app_uninstalled",
@@ -53,8 +53,8 @@
         },
         "interactivity": {
             "is_enabled": true,
-            "request_url": "https://slack-apps.salesforce.com:9443/a/A044Z58MJKB",
-            "message_menu_options_url": "https://slack-apps.salesforce.com:9443/a/A044Z58MJKB"
+            "request_url": "https://slack-apps.salesforce.com:9443/a/A044XMTSD53",
+            "message_menu_options_url": "https://slack-apps.salesforce.com:9443/a/A044XMTSD53"
         },
         "org_deploy_enabled": false,
         "socket_mode_enabled": false,

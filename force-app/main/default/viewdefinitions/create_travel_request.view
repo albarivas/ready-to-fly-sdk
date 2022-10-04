@@ -1,0 +1,64 @@
+description: 'View that creates a new Travel Request record by triggering an apex action on view submission.'
+components:
+    - definition: modal
+      properties:
+          title: 'New Travel Request'
+          submitLabel: 'Submit'
+      events:
+          onsubmit:
+              # definition maps to 'ActionDispatcherSubmitTravelRequest' apex class implementing Slack.ActionDispatcher
+              definition: 'apex__action__ActionDispatcherSubmitTravelRequest'
+      components:
+          - definition: input
+            properties:
+                label: 'Origin'
+                required: true
+            components:
+                - definition: textInput
+                  properties:
+                      name: 'Origin__c'
+                      placeholder: 'Hawaii'
+          - definition: input
+            properties:
+                label: 'Destination'
+                required: true
+            components:
+                - definition: textInput
+                  properties:
+                      name: 'Destination__c'
+                      placeholder: 'New Zealand'
+          - definition: input
+            properties:
+                label: 'Start Date'
+                required: true
+            components:
+                - definition: datepicker
+                  properties:
+                      name: 'Start_Date__c'
+                      placeholder: 'YYYY-MM-DD'
+          - definition: input
+            properties:
+                label: 'End Date'
+                required: true
+            components:
+                - definition: datepicker
+                  properties:
+                      name: 'End_Date__c'
+                      placeholder: 'YYYY-MM-DD'
+          - definition: input
+            properties:
+                label: 'Estimated Cost (USD)'
+                required: true
+            components:
+                - definition: textInput
+                  properties:
+                      name: 'Cost__c'
+                      placeholder: '3000'
+          - definition: input
+            properties:
+                label: 'Description'
+            components:
+                - definition: textInput
+                  properties:
+                      name: 'Description__c'
+                      multiline: true

@@ -49,6 +49,18 @@ sfdx auth:web:login --setdefaultusername -a mydevorg
 sfdx force:source:deploy -p force-app/main/default
 ```
 
+1. Assign permission set
+
+```
+sfdx force:user:permset:assign --permsetname Ready_to_Fly
+```
+
+1. Load sample data
+
+```
+sfdx force:apex:execute --apexcodefile data/setup.apex
+```
+
 ### Deploying the app using a Salesforce scratch org
 
 1. Clone the ready-to-fly-sdk repository
@@ -63,19 +75,19 @@ git clone https://github.com/trailheadapps/ready-to-fly-sdk
 sfdx auth:web:login --setdefaultdevhubusername -a DevHub
 ```
 
-4. Deploy
+1. Deploy
 
 ```
 sfdx force:source:push
 ```
 
-4. Assign permission set
+1. Assign permission set
 
 ```
 sfdx force:user:permset:assign --permsetname Ready_to_Fly
 ```
 
-5. Load sample data
+1. Load sample data
 
 ```
 sfdx force:apex:execute --apexcodefile data/setup.apex

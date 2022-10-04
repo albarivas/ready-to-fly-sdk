@@ -8,7 +8,7 @@
     <clientKey>*</clientKey>
     <clientSecret>*</clientSecret>
     <isProtected>false</isProtected>
-    <masterLabel>Ready to Fly App</masterLabel>
+    <masterLabel>Ready to Fly (Apex SDK)</masterLabel>
     <signingSecret>*</signingSecret>
     <userScopes>
         im:read,im:write,channels:read,channels:write,chat:write,groups:read,mpim:read,mpim:write,users:read,groups:write

@@ -1,7 +1,7 @@
-description: Ready to Fly App 2
-commands:
-    /apex-hello:
+description: Ready to Fly (Apex SDK)
+globalShortcuts:
+    apex-create-travel-request-global:
         action:
-            definition: apex__action__SayHello
-        title: Say Hello
-        description: A command to say Hello
+            definition: apex__action__CreateTravelRequestShortcutDispatcher
+        title: Create Travel Request
+        description: Create a travel request using a slack global shortcut.

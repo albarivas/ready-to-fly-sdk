@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "Ready to Fly (Apex SDK version)",
     "scripts": {
-        "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-        "prettier:verify": "prettier --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+        "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,slackapp,trigger,view,xml,yaml,yml}\"",
+        "prettier:verify": "prettier --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,slackapp,trigger,view,xml,yaml,yml}\"",
         "postinstall": "husky install",
         "precommit": "lint-staged"
     },

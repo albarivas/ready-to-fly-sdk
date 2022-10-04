@@ -14,4 +14,6 @@ components:
       components:
           - definition: section
             properties:
-                text: '{!view.properties.message}'
+                text:
+                    type: 'mrkdwn'
+                    text: '{!view.properties.message}'

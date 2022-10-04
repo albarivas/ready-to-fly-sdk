@@ -55,11 +55,28 @@ public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.Acti
                 }
                 insert travelRequest;
 
-                String title = 'Travel Request Created';
+                travelRequest = [
+                    SELECT Name
+                    FROM Travel_Request__c
+                    WHERE Id = :travelRequest.Id
+                    WITH SECURITY_ENFORCED
+                ];
+
+                String title = 'Ready to Fly';
+                String travelRequestURL =
+                    URL.getSalesforceBaseUrl().toExternalForm() +
+                    '/' +
+                    travelRequest.Id;
+                String travelRequestLink =
+                    '<' +
+                    travelRequestURL +
+                    '|' +
+                    travelRequest.Name +
+                    '>';
                 String body =
-                    ' Travel Request ' +
-                    travelRequest.Id +
-                    ' was created successfully.';
+                    'Travel Request ' +
+                    travelRequestLink +
+                    ' was created successfully :tada: !!!';
                 return MessageModal.getMessageModalView(
                     title,
                     new List<String>{ body }
@@ -70,9 +87,9 @@ public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.Acti
         }
 
         private Slack.ModalView getMessageModal(String errorMessage) {
-            String title = 'Error in Travel Request Creation';
+            String title = 'Ready to Fly';
             String body =
-                'There was a problem creating your Travel Request.' +
+                'Ops! travel request creation failed.' +
                 '\n' +
                 errorMessage;
             return MessageModal.getMessageModalView(

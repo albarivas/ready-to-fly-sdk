@@ -56,6 +56,18 @@ components:
                       placeholder: '3000'
           - definition: input
             properties:
+                label: 'Approver'
+                required: true
+            components:
+              - definition: externalSelect
+                properties:
+                  placeholder: "Select Approver..."
+                  name: "Approver__c"
+                  minQueryLength: 1
+                  datasource:
+                    definition: "apex__DataProviderManagers.getManagers"
+          - definition: input
+            properties:
                 label: 'Description'
             components:
                 - definition: textInput

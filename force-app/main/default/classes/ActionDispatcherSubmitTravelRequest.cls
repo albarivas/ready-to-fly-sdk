@@ -3,7 +3,7 @@
     responding to the "onsubmit" event defined in the 'create_account', 'create_contact',
     and 'create_opportunty' views.
 */
-public class ActionDispatcherSubmitTravelRequest extends Slack.ActionDispatcher {
+public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.ActionDispatcher {
     public override Slack.ActionHandler invoke(
         Map<String, Object> parameters,
         Slack.RequestContext context
@@ -45,7 +45,9 @@ public class ActionDispatcherSubmitTravelRequest extends Slack.ActionDispatcher 
                     (String) formData.get('End_Date__c')
                 );
                 travelRequest.Cost__c = Double.valueOf(formData.get('Cost__c'));
-                //travelRequest.Approver__c = (String) formData.get('Approver__c'); TODO
+                travelRequest.Approver__c = (String) formData.get(
+                    'Approver__c'
+                );
                 if (formData.containsKey('Description__c')) {
                     travelRequest.Description__c = (String) formData.get(
                         'Description__c'

@@ -6,3 +6,6 @@ package.xml
 **/jsconfig.json
 
 **/.eslintrc.json
+
+# Prevent pushing placeholder metadata file
+ReadyToFlyPlaceholder.slackapp-meta.xml

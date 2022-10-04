@@ -12,7 +12,8 @@ To be able to run this project you will need:
 
 -   A brand new [Trailhead Playground](https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management), or sign up for a [free Developer Edition org](https://developer.salesforce.com/signup).
     -   Optional: If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
--   A new Slack workspace. You will need to create this workspace through a personal Slack account. (instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace)). Apex SDK for Slack must be activated on the workspace.
+    -   Enable [Slack for Salesforce beta](https://developer.salesforce.com/docs/platform/salesforce-slack-sdk/guide/enable-beta.html)
+-   A new Slack workspace. You will need to create this workspace through a personal Slack account. (instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace)).
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
 -   `sfdx` CLI >= sfdx-cli/7.142.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
@@ -66,4 +67,16 @@ sfdx auth:web:login --setdefaultdevhubusername -a DevHub
 
 ```
 sfdx force:source:push
+```
+
+4. Assign permission set
+
+```
+sfdx force:user:permset:assign --permsetname Ready_to_Fly
+```
+
+5. Load sample data
+
+```
+sfdx force:apex:execute --apexcodefile data/setup.apex
 ```

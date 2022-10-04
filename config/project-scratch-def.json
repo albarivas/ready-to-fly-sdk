@@ -1,7 +1,7 @@
 {
     "orgName": "Ready to Fly (Apex SDK version)",
     "edition": "Developer",
-    "features": ["EnableSetPasswordInApi"],
+    "features": ["EnableSetPasswordInApi", "SLACK"],
     "settings": {
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true

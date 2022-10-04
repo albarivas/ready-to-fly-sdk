@@ -32,3 +32,6 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
+
+# Prevent storying metadata file with secrets
+ReadyToFly.slackapp-meta.xml

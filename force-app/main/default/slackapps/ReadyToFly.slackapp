@@ -1,0 +1,7 @@
+description: Ready to Fly App 2
+commands:
+    /apex-hello:
+        action:
+            definition: apex__action__SayHello
+        title: Say Hello
+        description: A command to say Hello

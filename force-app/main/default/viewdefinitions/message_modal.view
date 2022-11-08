@@ -17,3 +17,4 @@ components:
                 text:
                     type: 'mrkdwn'
                     text: '{!view.properties.message}'
+                    disableEncoding: true

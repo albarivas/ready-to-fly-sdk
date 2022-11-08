@@ -5,3 +5,9 @@ globalShortcuts:
             definition: apex__action__CreateTravelRequestShortcutDispatcher
         title: Create Travel Request
         description: Create a travel request using a slack global shortcut.
+events:
+  app_home_opened:
+    action:
+        definition: apex__action__EventDispatcherAppHomeOpened
+    title: Example event handler for app_home_opened
+    description: The event fires when a user opens the home tab.

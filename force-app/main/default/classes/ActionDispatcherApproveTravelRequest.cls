@@ -1,8 +1,8 @@
 /*
     This example apex class extends Slack.ActionDispatcher and is responsible for
-    responding to the "onsubmit" event defined in the 'create_trttavel_request' view.
+    responding to the "onclick" event defined in the 'apphome_requests_to_review' view "approve" button.
 */
-public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.ActionDispatcher {
+public with sharing class ActionDispatcherApproveTravelRequest extends Slack.ActionDispatcher {
     public override Slack.ActionHandler invoke(
         Map<String, Object> parameters,
         Slack.RequestContext context
@@ -32,34 +32,14 @@ public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.Acti
                 if (formData.isEmpty()) {
                     throw new ReadyToFlyException('Missing form data');
                 }
-                Travel_Request__c travelRequest = new Travel_Request__c();
-                travelRequest.Origin__c = (String) formData.get('Origin__c');
-                travelRequest.Destination__c = (String) formData.get(
-                    'Destination__c'
-                );
-                travelRequest.Start_Date__c = Date.valueOf(
-                    (String) formData.get('Start_Date__c')
-                );
-                travelRequest.End_Date__c = Date.valueOf(
-                    (String) formData.get('End_Date__c')
-                );
-                travelRequest.Cost__c = Double.valueOf(formData.get('Cost__c'));
-                travelRequest.Approver__c = (String) formData.get(
-                    'Approver__c'
-                );
-                if (formData.containsKey('Description__c')) {
-                    travelRequest.Description__c = (String) formData.get(
-                        'Description__c'
-                    );
-                }
-                insert travelRequest;
-
-                travelRequest = [
-                    SELECT Name
+                Id recordId = (Id) formData.get('recordId');
+                Travel_Request__c travelRequest = [
+                    SELECT Status__c
                     FROM Travel_Request__c
-                    WHERE Id = :travelRequest.Id
-                    WITH SECURITY_ENFORCED
+                    WHERE Id = :recordId
                 ];
+                travelRequest.Status__c = 'Approved';
+                update travelRequest;
 
                 String title = 'Ready to Fly';
                 String travelRequestURL =
@@ -75,7 +55,7 @@ public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.Acti
                 String body =
                     'Travel Request ' +
                     travelRequestLink +
-                    ' was created successfully :tada: !!!';
+                    ' was approved successfully :tada: !!!';
                 return MessageModal.getMessageModalView(
                     title,
                     new List<String>{ body }
@@ -88,7 +68,7 @@ public with sharing class ActionDispatcherSubmitTravelRequest extends Slack.Acti
         private Slack.ModalView getMessageModal(String errorMessage) {
             String title = 'Ready to Fly';
             String body =
-                'Ops! travel request creation failed.' +
+                'Ops! travel request approval failed.' +
                 '\n' +
                 errorMessage;
             return MessageModal.getMessageModalView(

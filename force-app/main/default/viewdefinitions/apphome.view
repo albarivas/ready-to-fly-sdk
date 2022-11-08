@@ -1,0 +1,41 @@
+# apphome.view
+description: "Home page"
+schema:
+  properties:
+    headerText:
+      type: string
+      defaultValue: "Recent Travel Requests"
+    instanceUrl:
+      type: string
+      defaultValue: "Salesforce instance URL"
+dataproviders:
+  records:
+    definition: "apex__DataProviderTravelRequests.getTravelRequests"
+components:
+  - definition: home
+    components:
+      - definition: header
+        properties:
+          text: "{!view.properties.headerText}"
+      - definition: iteration
+        properties:
+          foreach: "{!records}"
+          foritem: "record"
+        components:
+          - definition: divider
+          - definition: section
+            properties:
+              text:
+                text: "*:airplane:{!record.Name}:* {!record.Description__c}\n
+                      *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
+                      *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
+                      *Cost:* {!record.Cost__c}\n
+                      *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejaected','x','grey_question')}:\n
+                      *Approver:* {!record.Approver__r.Name}"
+                type: mrkdwn
+            components:
+                - definition: button
+                  properties:
+                    label: "View Details"
+                    name: "viewDetails"
+                    url: "{!view.properties.instanceUrl}/{!record.Id}"

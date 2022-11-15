@@ -28,13 +28,16 @@ public with sharing class ActionDispatcherApproveTravelRequest extends Slack.Act
         public Slack.ModalView call() {
             // Process the form data and return the modal view that corresponds to the requested object.
             try {
-                Map<String, Object> formData = this.context.getFormData();
-                if (formData.isEmpty()) {
-                    throw new ReadyToFlyException('Missing form data');
+                // Gets the action payload parameters
+                Slack.ActionPayload actionPayload = context.getActionPayload();
+                if (actionPayload == null) {
+                    throw new ReadyToFlyException('Wrong action payload');
                 }
-                Id recordId = (Id) formData.get('recordId');
+
+                Id recordId = (Id) actionPayload.getValue();
+
                 Travel_Request__c travelRequest = [
-                    SELECT Status__c
+                    SELECT Id, Name, Status__c
                     FROM Travel_Request__c
                     WHERE Id = :recordId
                 ];

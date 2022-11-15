@@ -10,10 +10,25 @@ schema:
       defaultValue: "Salesforce instance URL"
 dataproviders:
   records:
-    definition: "apex__DataProviderTravelRequests.getTravelRequests"
+    definition: "apex__DataProviderTravelRequests.getTravelRequestsToReview"
 components:
   - definition: home
     components:
+      - definition: actions
+        components:
+          - definition: select
+            properties:
+              name: "selectedView"
+              value: "requestsToReview"
+              placeholder: "Please select a view."
+              options:
+                - identifier: "myRequests"
+                  label: "My Travel Requests"
+                - identifier: "requestsToReview"
+                  label: "Travel Requests to Review"
+            events:
+              onchange:
+                definition: "apex__action__ActionDispatcherHomeSelectChange"
       - definition: header
         properties:
           text: "{!view.properties.headerText}"
@@ -30,11 +45,10 @@ components:
                       *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
                       *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
                       *Cost:* {!record.Cost__c}\n
-                      *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejaected','x','grey_question')}:\n
+                      *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejected','x','grey_question')}:\n
                       *Owner:* {!record.Owner.Name}"
                 type: mrkdwn
           - definition: actions
-            name: "travel_request_actions"
             components:
               - definition: button
                 properties:
@@ -46,18 +60,16 @@ components:
                   label: "Reject"
                   style: "danger"
                   name: "reject"
+                  value: "{!record.Id}"
                 events:
                   onclick:
                     definition: "apex__action__ActionDispatcherRejectTravelRequest"
-                    properties:
-                      recordId: "{!record.Id}"
               - definition: button
                 properties:
                   label: "Approve"
                   style: "primary"
                   name: "approve"
+                  value: "{!record.Id}"
                 events:
                   onclick:
                     definition: "apex__action__ActionDispatcherApproveTravelRequest"
-                    properties:
-                      recordId: "{!record.Id}"

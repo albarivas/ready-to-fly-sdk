@@ -39,6 +39,7 @@ public class EventDispatcherAppHomeOpened extends Slack.EventDispatcher {
                 'instanceUrl',
                 URL.getSalesforceBaseUrl().toExternalForm()
             );
+
             Slack.HomeView homeView = new Slack.HomeView.builder()
                 .viewReference(viewReference)
                 .build();

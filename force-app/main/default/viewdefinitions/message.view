@@ -1,0 +1,21 @@
+description: "This component displays a message"
+schema:
+  properties:
+    headerText:
+      type: string
+      defaultValue: "New message from Salesforce"
+    bodyText:
+      type: string
+      required: true
+components:
+  - definition: message
+    components:
+      - definition: header
+        properties:
+          text: "{!view.properties.headerText}"
+      - definition: divider
+      - definition: section
+        properties:
+          text:
+            text: "{!view.properties.bodyText}"
+            type: mrkdwn

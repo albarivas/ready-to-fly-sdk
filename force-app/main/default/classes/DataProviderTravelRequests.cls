@@ -39,7 +39,7 @@ public with sharing class DataProviderTravelRequests {
                 Owner.Name,
                 Name
             FROM Travel_Request__c
-            WHERE Approver__c = :UserInfo.getUserId()
+            WHERE Approver__c = :UserInfo.getUserId() AND Status__c = 'New'
             WITH SECURITY_ENFORCED
             ORDER BY Name
         ];

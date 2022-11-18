@@ -20,39 +20,16 @@ public class EventDispatcherAppHomeOpened extends Slack.EventDispatcher {
         }
 
         public void run() {
-            // Gets the slackapp app definition
-            Slack.App app = Slack.App.ReadyToFly.get();
-            Slack.BotClient botClient = app.getBotClientForTeam(
-                context.getTeamId()
-            );
             // Gets the userId
             String event = String.valueOf(parameters.getEvent());
             String userId = event.substringBetween('user=', ',');
 
-            // Gets the apphome view and publish it
-            Slack.ViewReference viewReference = Slack.View.apphome.get();
-            viewReference.setParameter(
-                'headerText',
-                'Recent Travel Requests from ' + UserInfo.getName()
+            // Updates home page view
+            HomePageService.updateHomePageView(
+                'myRequests',
+                userId,
+                context.getTeamId()
             );
-            viewReference.setParameter(
-                'instanceUrl',
-                URL.getSalesforceBaseUrl().toExternalForm()
-            );
-
-            Slack.HomeView homeView = new Slack.HomeView.builder()
-                .viewReference(viewReference)
-                .build();
-
-            Slack.ViewsPublishRequest req = new Slack.ViewsPublishRequest.builder()
-                .userId(userId)
-                .view(homeView)
-                .build();
-
-            Slack.ViewsPublishResponse response = botClient.ViewsPublish(req);
-            if (response.getError() != null) {
-                System.debug(response.getError());
-            }
         }
     }
 }

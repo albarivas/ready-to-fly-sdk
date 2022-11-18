@@ -36,36 +36,56 @@ public with sharing class ActionDispatcherApproveTravelRequest extends Slack.Act
 
                 Id recordId = (Id) actionPayload.getValue();
 
-                Travel_Request__c travelRequest = [
-                    SELECT Id, Name, Status__c
-                    FROM Travel_Request__c
-                    WHERE Id = :recordId
-                ];
-                travelRequest.Status__c = 'Approved';
-                update travelRequest;
+                // Approve Travel Request
+                Travel_Request__c travelRequest = approveTravelRequest(
+                    recordId
+                );
 
-                String title = 'Ready to Fly';
-                String travelRequestURL =
-                    URL.getSalesforceBaseUrl().toExternalForm() +
-                    '/' +
-                    travelRequest.Id;
-                String travelRequestLink =
-                    '<' +
-                    travelRequestURL +
-                    '|' +
-                    travelRequest.Name +
-                    '>';
-                String body =
-                    'Travel Request ' +
-                    travelRequestLink +
-                    ' was approved successfully :tada: !!!';
+                // Updates home page view
+                HomePageService.updateHomePageView(
+                    'requestsToReview',
+                    context.getUserId(),
+                    context.getTeamId()
+                );
+
+                // Show modal
                 return MessageModal.getMessageModalView(
-                    title,
-                    new List<String>{ body }
+                    'Ready to Fly',
+                    new List<String>{ getBody(travelRequest) }
                 );
             } catch (Exception e) {
                 return getMessageModal(e.getMessage());
             }
+        }
+
+        private Travel_Request__c approveTravelRequest(Id recordId) {
+            Travel_Request__c travelRequest = [
+                SELECT Id, Name, Status__c
+                FROM Travel_Request__c
+                WHERE Id = :recordId
+            ];
+            travelRequest.Status__c = 'Approved';
+            update travelRequest;
+
+            return travelRequest;
+        }
+
+        private String getBody(Travel_Request__c travelRequest) {
+            String travelRequestURL =
+                URL.getSalesforceBaseUrl().toExternalForm() +
+                '/' +
+                travelRequest.Id;
+            String travelRequestLink =
+                '<' +
+                travelRequestURL +
+                '|' +
+                travelRequest.Name +
+                '>';
+            String body =
+                'Travel Request ' +
+                travelRequestLink +
+                ' was approved successfully :tada: !!!';
+            return body;
         }
 
         private Slack.ModalView getMessageModal(String errorMessage) {

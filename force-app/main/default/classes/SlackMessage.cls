@@ -9,7 +9,8 @@ public with sharing class SlackMessage {
     public Decimal cost;
     public String status;
     public String ownerName;
-    public String userId;
+    public String targetSlackUserId;
+    public String salesforceTargetUserId;
     public String instanceUrl;
 
     public String getHeader() {

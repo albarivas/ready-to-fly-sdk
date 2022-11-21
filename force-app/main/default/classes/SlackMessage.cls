@@ -28,10 +28,15 @@ public with sharing class SlackMessage {
         String body = '';
         if (status == 'New') {
             body += 'You have a new Travel Request to review:\n\n';
-            body += '*:airplane:' + name + '*:' + description + '\n';
+            body += '*:airplane:' + name + '*: ' + description + '\n';
             body += '*From-To:* ' + origin + ' - ' + destination + '\n';
-            body += '*Dates:* ' + startDate + '- ' + endDate + '\n';
-            body += '*Cost:* ' + cost + '\n';
+            body +=
+                '*Dates:* ' +
+                startDate.format() +
+                '- ' +
+                endDate.format() +
+                '\n';
+            body += '*Cost:* ' + cost.format() + 'USD \n';
             body += '*Status:* ' + status + ' :grey_question:\n';
             body += '*Owner:* ' + ownerName;
         } else if (status == 'Approved') {

@@ -41,10 +41,11 @@ components:
           - definition: section
             properties:
               text:
+                # Cannot format dates correctly, formula operators needed are not supported
                 text: "*:airplane:{!record.Name}:* {!record.Description__c}\n
                       *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
                       *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
-                      *Cost:* {!record.Cost__c}\n
+                      *Cost:* {!record.Cost__c} USD\n
                       *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejected','x','grey_question')}:\n
                       *Approver:* {!record.Approver__r.Name}"
                 type: mrkdwn

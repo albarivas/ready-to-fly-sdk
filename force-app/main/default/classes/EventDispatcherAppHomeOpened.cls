@@ -21,11 +21,11 @@ public class EventDispatcherAppHomeOpened extends Slack.EventDispatcher {
 
         public void run() {
             // Gets the userId
-            String event = String.valueOf(parameters.getEvent());
-            String userId = event.substringBetween('user=', ',');
+            Slack.AppHomeOpenedEvent appHomeOpened = (Slack.AppHomeOpenedEvent) parameters.getEvent();
+            String userId = appHomeOpened.getUser();
 
             // Updates home page view
-            HomePageService.updateHomePageView(
+            SlackService.updateHomePageView(
                 'myRequests',
                 userId,
                 context.getTeamId()

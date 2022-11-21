@@ -2,7 +2,7 @@
     This example apex class extends Slack.ActionDispatcher and is responsible for
     responding to the "onclick" event defined in the 'apphome_requests_to_review' view "approve" button.
 */
-public with sharing class ActionDispatcherApproveTravelRequest extends Slack.ActionDispatcher {
+public with sharing class ActionDispatcherModifyTravelRequest extends Slack.ActionDispatcher {
     public override Slack.ActionHandler invoke(
         Map<String, Object> parameters,
         Slack.RequestContext context
@@ -36,13 +36,30 @@ public with sharing class ActionDispatcherApproveTravelRequest extends Slack.Act
 
                 Id recordId = (Id) actionPayload.getValue();
 
-                // Approve Travel Request
-                Travel_Request__c travelRequest = approveTravelRequest(
-                    recordId
+                // Get onclick parameter
+                // Note: we could have passed recordId by parameter too - which is the best practice?
+                String travelRequestNewStatus = (String) parameters.get(
+                    'travelRequestNewStatus'
                 );
 
+                // Approve or reject Travel Request
+                Travel_Request__c travelRequest;
+                if (
+                    (travelRequestNewStatus == 'Approved') ||
+                    (travelRequestNewStatus == 'Rejected')
+                ) {
+                    travelRequest = modifyTravelRequest(
+                        recordId,
+                        travelRequestNewStatus
+                    );
+                } else {
+                    throw new ReadyToFlyException(
+                        'Status not supported: ' + travelRequestNewStatus
+                    );
+                }
+
                 // Updates home page view
-                HomePageService.updateHomePageView(
+                SlackService.updateHomePageViewAsync(
                     'requestsToReview',
                     context.getUserId(),
                     context.getTeamId()
@@ -50,7 +67,7 @@ public with sharing class ActionDispatcherApproveTravelRequest extends Slack.Act
 
                 // Show modal
                 return MessageModal.getMessageModalView(
-                    'Ready to Fly',
+                    getHeader(travelRequest),
                     new List<String>{ getBody(travelRequest) }
                 );
             } catch (Exception e) {
@@ -58,16 +75,31 @@ public with sharing class ActionDispatcherApproveTravelRequest extends Slack.Act
             }
         }
 
-        private Travel_Request__c approveTravelRequest(Id recordId) {
+        private Travel_Request__c modifyTravelRequest(
+            Id recordId,
+            String travelRequestNewStatus
+        ) {
             Travel_Request__c travelRequest = [
                 SELECT Id, Name, Status__c
                 FROM Travel_Request__c
                 WHERE Id = :recordId
             ];
-            travelRequest.Status__c = 'Approved';
+            travelRequest.Status__c = travelRequestNewStatus;
             update travelRequest;
 
             return travelRequest;
+        }
+
+        private String getHeader(Travel_Request__c travelRequest) {
+            String header;
+            if (travelRequest.Status__c == 'Approved') {
+                header = 'Travel Request approved';
+            } else if (travelRequest.Status__c == 'Rejected') {
+                header = 'Travel Request rejected';
+            } else {
+                header = 'Something went wrong';
+            }
+            return header;
         }
 
         private String getBody(Travel_Request__c travelRequest) {
@@ -81,10 +113,24 @@ public with sharing class ActionDispatcherApproveTravelRequest extends Slack.Act
                 '|' +
                 travelRequest.Name +
                 '>';
-            String body =
-                'Travel Request ' +
-                travelRequestLink +
-                ' was approved successfully :tada: !!!';
+
+            String body;
+            if (travelRequest.Status__c == 'Approved') {
+                body =
+                    'Travel Request ' +
+                    travelRequestLink +
+                    ' was approved successfully :tada: !!!';
+            } else if (travelRequest.Status__c == 'Rejected') {
+                body =
+                    'Ops. Your travel request ' +
+                    +travelRequestLink +
+                    ' has been rejected.';
+            } else {
+                body =
+                    'Check your travel request ' +
+                    +travelRequestLink +
+                    ' to know more.';
+            }
             return body;
         }
 

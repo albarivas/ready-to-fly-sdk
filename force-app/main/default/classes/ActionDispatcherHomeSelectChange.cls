@@ -32,7 +32,7 @@ public with sharing class ActionDispatcherHomeSelectChange extends Slack.ActionD
             String selectedView = (String) actionPayload.getValue();
 
             // Updates home page view
-            HomePageService.updateHomePageView(
+            SlackService.updateHomePageView(
                 selectedView,
                 context.getUserId(),
                 context.getTeamId()

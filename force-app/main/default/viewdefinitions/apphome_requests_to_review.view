@@ -63,7 +63,9 @@ components:
                   value: "{!record.Id}"
                 events:
                   onclick:
-                    definition: "apex__action__ActionDispatcherRejectTravelRequest"
+                    definition: "apex__action__ActionDispatcherModifyTravelRequest"
+                    properties:
+                      travelRequestNewStatus: "Rejected"
               - definition: button
                 properties:
                   label: "Approve"
@@ -72,4 +74,6 @@ components:
                   value: "{!record.Id}"
                 events:
                   onclick:
-                    definition: "apex__action__ActionDispatcherApproveTravelRequest"
+                    definition: "apex__action__ActionDispatcherModifyTravelRequest"
+                    properties:
+                      travelRequestNewStatus: "Approved"

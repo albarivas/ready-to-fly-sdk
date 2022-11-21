@@ -19,3 +19,4 @@ components:
           text:
             text: "{!view.properties.bodyText}"
             type: mrkdwn
+            disableEncoding: true

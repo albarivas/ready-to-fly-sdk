@@ -93,10 +93,13 @@ public with sharing class TravelRequestTriggerHandler {
             message.cost = request.Cost__c.intvalue();
             message.status = request.Status__c;
             message.ownerName = usersById.get(request.OwnerId).Name;
-            message.targetSlackUserId = targetSlackUserId;
             message.instanceUrl = URL.getSalesforceBaseUrl().toExternalForm();
 
-            SlackService.postToSlack(message);
+            SlackService.postToSlack(
+                message.getHeader(),
+                message.getBody(),
+                targetSlackUserId
+            );
         }
     }
 }

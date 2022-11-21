@@ -9,17 +9,16 @@ public with sharing class SlackMessage {
     public Decimal cost;
     public String status;
     public String ownerName;
-    public String targetSlackUserId;
     public String salesforceTargetUserId;
     public String instanceUrl;
 
     public String getHeader() {
         String header = '';
-        if (header == 'New') {
+        if (status == 'New') {
             return 'New Travel Request to review';
-        } else if (header == 'Approved') {
+        } else if (status == 'Approved') {
             return 'Travel Request approved';
-        } else if (header == 'Rejected') {
+        } else if (status == 'Rejected') {
             return 'Travel Request rejected';
         }
         return header;
@@ -29,16 +28,11 @@ public with sharing class SlackMessage {
         String body = '';
         if (status == 'New') {
             body += 'You have a new Travel Request to review:\n\n';
-            body += '*:airplane:' + name + ':' + description + '\n';
+            body += '*:airplane:' + name + '*:' + description + '\n';
             body += '*From-To:* ' + origin + ' - ' + destination + '\n';
             body += '*Dates:* ' + startDate + '- ' + endDate + '\n';
             body += '*Cost:* ' + cost + '\n';
-            body +=
-                '*Status:* ' +
-                status +
-                ':{!CASE(' +
-                status +
-                ',"Approved","white_check_mark","Rejected","x","grey_question")}:\n';
+            body += '*Status:* ' + status + ' :grey_question:\n';
             body += '*Owner:* ' + ownerName;
         } else if (status == 'Approved') {
             String requestURL =

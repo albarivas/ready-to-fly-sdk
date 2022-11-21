@@ -14,7 +14,12 @@ public with sharing class SlackService {
         );
     }
 
-    public static void postToSlack(SlackMessage message) {
+    @future(callout=true)
+    public static void postToSlack(
+        String headerText,
+        String bodyText,
+        String slackUserId
+    ) {
         // Get Slack workspace Id
         String teamId = getSlackWorkspaceId();
 
@@ -24,11 +29,11 @@ public with sharing class SlackService {
 
         // Post the message
         Slack.ViewReference view = Slack.View.message.get();
-        view.setParameter('headerText', message.getHeader());
-        view.setParameter('bodyText', message.getBody());
+        view.setParameter('headerText', headerText);
+        view.setParameter('bodyText', bodyText);
 
         Slack.ChatPostMessageRequest req = new Slack.ChatPostMessageRequest.builder()
-            .channel(message.targetSlackUserId)
+            .channel(slackUserId)
             .viewReference(view)
             .build();
 

@@ -1,4 +1,4 @@
-description: 'This is a simple component that displays a message in a modal'
+description: "This is a simple component that displays a message in a modal"
 schema:
     properties:
         title:
@@ -10,11 +10,11 @@ schema:
 components:
     - definition: modal
       properties:
-          title: '{!view.properties.title}'
+          title: "{!view.properties.title}"
       components:
           - definition: section
             properties:
                 text:
-                    type: 'mrkdwn'
-                    text: '{!view.properties.message}'
+                    text: "{!view.properties.message}"
+                    type: mrkdwn
                     disableEncoding: true

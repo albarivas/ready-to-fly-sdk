@@ -3,7 +3,7 @@
     for looking up User manager records. See usage defined in the 'create_travel_request' view.
 */
 public with sharing class DataProviderManagers {
-    public static Slack.OptionDataResponse getManagers(String value) {
+    public static List<Slack.Option> getManagers() {
         User user = [
             SELECT
                 Manager.Name,
@@ -31,6 +31,6 @@ public with sharing class DataProviderManagers {
             managerOptions.add(option);
         }
 
-        return new Slack.OptionDataResponse(managerOptions);
+        return managerOptions;
     }
 }

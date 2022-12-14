@@ -1,4 +1,7 @@
 description: "View that creates a new Travel Request record by triggering an apex action on view submission."
+dataproviders:
+    managers:
+        definition: 'apex__DataProviderManagers.getManagers'
 components:
     - definition: modal
       properties:
@@ -59,13 +62,11 @@ components:
                 label: "Approver"
                 required: true
             components:
-                - definition: externalSelect
+                - definition: select
                   properties:
                       placeholder: "Select Approver..."
                       name: "Approver__c"
-                      minQueryLength: 1
-                      datasource:
-                          definition: "apex__DataProviderManagers.getManagers"
+                      options: "{!managers}"
           - definition: input
             properties:
                 label: "Description"

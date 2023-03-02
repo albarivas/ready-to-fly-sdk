@@ -24,7 +24,7 @@
     },
     "oauth_config": {
         "redirect_urls": [
-            "https://auth.slack-apps.salesforce.com/slack_oauth_callback/A044XMTSD53"
+            "https://auth.slack-apps.salesforce.com/slack_oauth_callback/APP_ID"
         ],
         "scopes": {
             "user": ["reactions:read", "chat:write"],
@@ -40,7 +40,7 @@
     },
     "settings": {
         "event_subscriptions": {
-            "request_url": "https://slack-apps.salesforce.com:9443/a/A044XMTSD53",
+            "request_url": "https://slack-apps.salesforce.com:9443/a/APP_ID",
             "bot_events": [
                 "app_home_opened",
                 "app_uninstalled",
@@ -53,8 +53,8 @@
         },
         "interactivity": {
             "is_enabled": true,
-            "request_url": "https://slack-apps.salesforce.com:9443/a/A044XMTSD53",
-            "message_menu_options_url": "https://slack-apps.salesforce.com:9443/a/A044XMTSD53"
+            "request_url": "https://slack-apps.salesforce.com:9443/a/APP_ID",
+            "message_menu_options_url": "https://slack-apps.salesforce.com:9443/a/APP_ID"
         },
         "org_deploy_enabled": false,
         "socket_mode_enabled": false,

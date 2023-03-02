@@ -1,7 +1,5 @@
 # Ready to Fly (Apex SDK version) [WIP]
 
-[![CI Workflow](https://github.com/trailheadapps/ready-to-fly-sdk/workflows/CI/badge.svg)](https://github.com/trailheadapps/ready-to-fly-sdk/actions?query=workflow%3ACI) [![codecov](https://codecov.io/gh/trailheadapps/ready-to-fly-sdk/branch/main/graph/badge.svg)](https://codecov.io/gh/trailheadapps/ready-to-fly-sdk)
-
 <img src="./airplaneLogo.png" width=30% height=30%>
 
 Sample app to showcase Slack + Salesforce integrations using the Apex SDK for Slack.
@@ -23,19 +21,25 @@ To be able to run this project you will need:
 ### Configuring Slack app at api.slack.com
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
-2. Select the workspace you created in the Prerequisites section
-3. Copy the contents of [manifest.yml](./apps/ready-to-fly-sdk/manifest.YAML) into the text box that says **Enter app manifest below** and click _Next_
-4. Review the configuration and click _Create_
-5. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
-6. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
+1. Select the workspace you created in the Prerequisites section
+1. Copy the contents of [manifest.json](./apps/ready-to-fly-sdk/manifest.json) into the text box that says **Enter app manifest below** and click _Next_
+1. Review the configuration and click _Create_
+1. Replace APP_ID on the app manifest with the Id of your app and save changes. You can copy it from the URL for the app in api.slack.com.
+1. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
+1. In _Basic Information_ Generate an app level token for the connections.write scope
+1. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
 
-### Deploying the app using a Salesforce Non-scratch org (or a Trailhead Playground)
+### Preparing the Slack app metadata before deploy
 
 1. Clone the ready-to-fly-sdk repository
 
 ```
 git clone https://github.com/trailheadapps/ready-to-fly-sdk
 ```
+
+1. Open [ReadyToFlyPlaceHolder.slackapp-meta.xml](./force-app/main/default/slackapps/ReadyToFlyPlaceHolder.slackapp-meta.xml) and modify the secrets that you can copy from the _Basic Information_ tab of your app at api.slack.com. Rename the file to be called `ReadyToFlyPlace.slackapp-meta.xml`. This file is ignored and won't be commited to the repo.
+
+### Deploying the app using a Salesforce Non-scratch org or a Trailhead Playground
 
 1. Authenticate to your Salesforce org and set as default:
 
@@ -63,13 +67,7 @@ sfdx force:apex:execute --apexcodefile data/setup.apex
 
 ### Deploying the app using a Salesforce scratch org
 
-1. Clone the ready-to-fly-sdk repository
-
-```
-git clone https://github.com/trailheadapps/ready-to-fly-sdk
-```
-
-2. Authenticate to your Salesforce org that has DevHub enabled
+1. Authenticate to your Salesforce org that has DevHub enabled
 
 ```
 sfdx auth:web:login --setdefaultdevhubusername -a DevHub

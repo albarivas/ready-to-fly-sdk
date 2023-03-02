@@ -8,10 +8,8 @@ Sample app to showcase Slack + Salesforce integrations using the Apex SDK for Sl
 
 To be able to run this project you will need:
 
--   A brand new [Trailhead Playground](https://trailhead.salesforce.com/content/learn/modules/trailhead_playground_management), or sign up for a [free Developer Edition org](https://developer.salesforce.com/signup).
-    -   Optional: If you want to use scratch orgs follow the [instructions](https://help.salesforce.com/articleView?id=sfdx_setup_enable_devhub.htm&type=5) to enable Dev Hub in your Salesforce Developer Org.
-    -   Enable [Slack for Salesforce beta](https://developer.salesforce.com/docs/platform/salesforce-slack-sdk/guide/enable-beta.html)
--   A new Slack workspace. You will need to create this workspace through a personal Slack account. (instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace)).
+-   A brand new [free Developer Edition org](https://developer.salesforce.com/signup) or a scratch org.
+-   A Slack workspace. You can create following the instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
 -   `sfdx` CLI >= sfdx-cli/7.142.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))

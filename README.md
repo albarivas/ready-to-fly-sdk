@@ -70,3 +70,5 @@ sfdx force:user:permset:assign --permsetname Ready_to_Fly
 ```
 sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
+
+1. Make sure your user has the System Permission `Connect to Slack`

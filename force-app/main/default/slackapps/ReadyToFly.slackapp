@@ -1,6 +1,12 @@
 description: Ready to Fly (Apex SDK)
+commands:
+  /view-travel-request-status:
+    action:
+      definition: apex__action__ViewTravelRequestCommandDispatcher
+    title: Views a travel request status
+    description: Views a travel request status
 globalShortcuts:
-    apex-create-travel-request-global:
+    create-travel-request:
         action:
             definition: apex__action__CreateTravelRequestShortcutDispatcher
         title: Create Travel Request

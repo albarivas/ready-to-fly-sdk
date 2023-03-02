@@ -16,7 +16,7 @@ To be able to run this project you will need:
 
 ## Setup Steps
 
-## Accept Slack terms in your org (Scratch or Non-scratch org)
+### Accept Slack terms in your org
 
 1. In your org, accept Slack integrations terms on `setup --> Initial Slack setup`
 
@@ -69,7 +69,7 @@ sfdx force:user:permset:assign --permsetname Ready_to_Fly
 sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
 
-## Install Salesforce for Slack app on your workspace for authorization
+### Install Salesforce for Slack app on your workspace for authorization
 
 1. Install in your workspace, at a minimum, [Salesforce for Slack](https://slack.com/apps/A03269G3DNE-salesforce-for-slack?tab=more_info). This will handle authorization and user mappings.
 

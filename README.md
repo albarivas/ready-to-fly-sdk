@@ -18,7 +18,13 @@ To be able to run this project you will need:
 
 ## Setup Steps
 
-### Configuring Slack app at api.slack.com
+## Accept Slack terms in your org (Scratch or Non-scratch org)
+
+1. In your org, accept Slack integrations terms on `setup --> Initial Slack setup`
+
+1. In your org, accept Apex SDK terms on `setup --> Build Slack Apps with Apex`
+
+### Creating a Slack app at api.slack.com
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
 1. Select the workspace you created in the Prerequisites section
@@ -29,7 +35,7 @@ To be able to run this project you will need:
 1. In _Basic Information_ Generate an app level token for the connections.write scope
 1. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
 
-### Preparing the Slack app metadata before deploy
+### Prepare the Slack app metadata and deploy
 
 1. Clone the ready-to-fly-sdk repository
 
@@ -39,41 +45,15 @@ git clone https://github.com/trailheadapps/ready-to-fly-sdk
 
 1. Open [ReadyToFlyPlaceHolder.slackapp-meta.xml](./force-app/main/default/slackapps/ReadyToFlyPlaceHolder.slackapp-meta.xml) and modify the secrets that you can copy from the _Basic Information_ tab of your app at api.slack.com. Rename the file to be called `ReadyToFlyPlace.slackapp-meta.xml`. This file is ignored and won't be commited to the repo.
 
-### Deploying the app using a Salesforce Non-scratch org or a Trailhead Playground
+1. Replace your team Id into [Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml](./force-app/main/default/customMetadata/Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml). You can get it from the URL when you navigate to https://your_workspace.slack.com/.
 
-1. Authenticate to your Salesforce org and set as default:
-
-```
-sfdx auth:web:login --setdefaultusername -a mydevorg
-```
-
-1. Deploy
+1. Deploy the code
 
 ```
 sfdx force:source:deploy -p force-app/main/default
 ```
 
-1. Assign permission set
-
-```
-sfdx force:user:permset:assign --permsetname Ready_to_Fly
-```
-
-1. Load sample data
-
-```
-sfdx force:apex:execute --apexcodefile data/setup.apex
-```
-
-### Deploying the app using a Salesforce scratch org
-
-1. Authenticate to your Salesforce org that has DevHub enabled
-
-```
-sfdx auth:web:login --setdefaultdevhubusername -a DevHub
-```
-
-1. Deploy
+or, if using a scratch org:
 
 ```
 sfdx force:source:push
@@ -90,3 +70,9 @@ sfdx force:user:permset:assign --permsetname Ready_to_Fly
 ```
 sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
+
+## Install Salesforce for Slack app on your workspace for authorization
+
+1. Install in your workspace, at a minimum, [Salesforce for Slack](https://slack.com/apps/A03269G3DNE-salesforce-for-slack?tab=more_info). This will handle authorization and user mappings.
+
+1. Open the `Salesforce for Slack` app in Slack and click on "connect", to connect to your org. Make sure to change the URL host to login.salesforce.com if not using a scratch org.

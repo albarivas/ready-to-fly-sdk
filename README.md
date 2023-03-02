@@ -26,7 +26,7 @@ To be able to run this project you will need:
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
 1. Select the workspace you created in the Prerequisites section
-1. Copy the contents of [manifest.json](./apps/ready-to-fly-sdk/manifest.json) into the text box that says **Enter app manifest below** and click _Next_
+1. Copy the contents of [manifest.json](./manifest.json) into the text box that says **Enter app manifest below** and click _Next_
 1. Review the configuration and click _Create_
 1. Replace APP_ID on the app manifest with the Id of your app and save changes. You can copy it from the URL for the app in api.slack.com.
 1. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
@@ -38,7 +38,7 @@ To be able to run this project you will need:
 1. Clone the ready-to-fly-sdk repository
 
 ```
-git clone https://github.com/trailheadapps/ready-to-fly-sdk
+git clone https://github.com/albarivas/ready-to-fly-sdk
 ```
 
 1. Open [ReadyToFlyPlaceHolder.slackapp-meta.xml](./force-app/main/default/slackapps/ReadyToFlyPlaceHolder.slackapp-meta.xml) and modify the secrets that you can copy from the _Basic Information_ tab of your app at api.slack.com. Rename the file to be called `ReadyToFlyPlace.slackapp-meta.xml`. This file is ignored and won't be commited to the repo.

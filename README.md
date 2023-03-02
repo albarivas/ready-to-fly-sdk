@@ -9,7 +9,7 @@ Sample app to showcase Slack + Salesforce integrations using the Apex SDK for Sl
 To be able to run this project you will need:
 
 -   A brand new [free Developer Edition org](https://developer.salesforce.com/signup) or a scratch org.
--   A Slack workspace. You can create following the instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
+-   A Slack workspace. You can create one following the instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
 -   `sfdx` CLI >= sfdx-cli/7.142.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))
@@ -22,6 +22,8 @@ To be able to run this project you will need:
 
 1. In your org, accept Apex SDK terms on `setup --> Build Slack Apps with Apex`
 
+Note: if you're using scratch orgs, you'll have to accept terms in your Dev Hub
+
 ### Creating a Slack app at api.slack.com
 
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose **From an app manifest**
@@ -30,7 +32,7 @@ To be able to run this project you will need:
 1. Review the configuration and click _Create_
 1. Replace APP_ID on the app manifest with the Id of your app and save changes. You can copy it from the URL for the app in api.slack.com.
 1. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
-1. In _Basic Information_ Generate an app level token for the connections.write scope
+1. In _Basic Information_ Generate an app level token for the `connections.write` scope
 1. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
 
 ### Prepare the Slack app metadata and deploy
@@ -68,9 +70,3 @@ sfdx force:user:permset:assign --permsetname Ready_to_Fly
 ```
 sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
-
-### Install Salesforce for Slack app on your workspace for authorization
-
-1. Install in your workspace, at a minimum, [Salesforce for Slack](https://slack.com/apps/A03269G3DNE-salesforce-for-slack?tab=more_info). This will handle authorization and user mappings.
-
-1. Open the `Salesforce for Slack` app in Slack and click on "connect", to connect to your org. Make sure to change the URL host to login.salesforce.com if not using a scratch org.

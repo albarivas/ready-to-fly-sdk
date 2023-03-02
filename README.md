@@ -9,7 +9,7 @@ Sample app to showcase Slack + Salesforce integrations using the Apex SDK for Sl
 To be able to run this project you will need:
 
 -   A brand new [free Developer Edition org](https://developer.salesforce.com/signup) or a scratch org.
--   A Slack workspace. You can create one following the instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
+-   A Slack workspace. You can create a free workpaces following the instructions [here](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
 -   `git` (download [here](https://git-scm.com/downloads))
 -   `node` >= 14 (download [here](https://nodejs.org/en/download/))
 -   `sfdx` CLI >= sfdx-cli/7.142.0 (download [here](https://developer.salesforce.com/tools/sfdxcli))

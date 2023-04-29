@@ -72,3 +72,8 @@ sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
 
 1. Make sure your user has the System Permission `Connect to Slack`
+
+1. Resources
+   [Apex SDK Documentation](developer.salesforce.com/docs/platform/salesforce-slack-sdk)
+   [Ready to Fly (Bolt.js)](github.com/trailheadapps/ready-to-fly)
+   [Slack Next Generation Platform](api.slack.com/future)

@@ -1,57 +1,58 @@
 # apphome.view
-description: "Home page"
+description: 'Home page'
 schema:
-  properties:
-    headerText:
-      type: string
-      defaultValue: "Recent Travel Requests"
-    instanceUrl:
-      type: string
-      defaultValue: "Salesforce instance URL"
+    properties:
+        headerText:
+            type: string
+            defaultValue: 'Recent Travel Requests'
+        instanceUrl:
+            type: string
+            defaultValue: 'Salesforce instance URL'
 dataproviders:
-  records:
-    definition: "apex__DataProviderTravelRequests.getTravelRequests"
+    records:
+        definition: 'apex__DataProviderTravelRequests.getTravelRequests'
 components:
-  - definition: home
-    components:
-      - definition: actions
-        components:
-          - definition: select
-            properties:
-              name: "selectedView"
-              value: "myRequests"
-              placeholder: "Please select a view."
-              options:
-                - identifier: "myRequests"
-                  label: "My Travel Requests"
-                - identifier: "requestsToReview"
-                  label: "Travel Requests to Review"
-            events:
-              onchange:
-                definition: "apex__action__ActionDispatcherHomeSelectChange"
-      - definition: header
-        properties:
-          text: "{!view.properties.headerText}"
-      - definition: iteration
-        properties:
-          foreach: "{!records}"
-          foritem: "record"
-        components:
-          - definition: divider
-          - definition: section
-            properties:
-              text:
-                # Cannot format dates correctly, formula operators needed are not supported
-                text: "*:airplane:{!record.Name}:* {!record.Description__c}\n
-                      *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
-                      *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
-                      *Cost:* {!record.Cost__c} USD\n
-                      *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejected','x','grey_question')}:\n
-                      *Approver:* {!record.Approver__r.Name}"
-                type: mrkdwn
+    - definition: home
+      components:
+          - definition: actions
             components:
-                - definition: button
+                - definition: select
                   properties:
-                    label: "View Details"
-                    name: "viewDetails"
-                    url: "{!view.properties.instanceUrl}/{!record.Id}"
+                      name: 'selectedView'
+                      value: 'myRequests'
+                      placeholder: 'Please select a view.'
+                      options:
+                          - identifier: 'myRequests'
+                            label: 'My Travel Requests'
+                          - identifier: 'requestsToReview'
+                            label: 'Travel Requests to Review'
+                  events:
+                      onchange:
+                          definition: 'apex__action__ActionDispatcherHomeSelectChange'
+          - definition: header
+            properties:
+                text: '{!view.properties.headerText}'
+          - definition: iteration
+            properties:
+                foreach: '{!records}'
+                foritem: 'record'
+            components:
+                - definition: divider
+                - definition: section
+                  properties:
+                      text:
+                          # Cannot format dates correctly, formula operators needed are not supported
+                          text:
+                              "*:airplane:{!record.Name}:* {!record.Description__c}\n
+                              *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
+                              *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
+                              *Cost:* {!record.Cost__c} USD\n
+                              *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejected','x','grey_question')}:\n
+                              *Approver:* {!record.Approver__r.Name}"
+                          type: mrkdwn
+                  components:
+                      - definition: button
+                        properties:
+                            label: 'View Details'
+                            name: 'viewDetails'
+                            url: '{!view.properties.instanceUrl}/{!record.Id}'

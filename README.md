@@ -32,8 +32,8 @@ Note: if you're using scratch orgs, you'll have to accept terms in your Dev Hub
 1. Review the configuration and click _Create_
 1. Replace APP_ID on the app manifest with the Id of your app and save changes. You can copy it from the URL for the app in api.slack.com.
 1. In _Basic Information_ scroll down to the _Display Information_ section. Upload a picture for the app. You can use [this logo](./airplaneLogo.png)
-1. In _Basic Information_ Generate an app level token for the `connections.write` scope
-1. Now click _Install App_ on the left menu. Then click the _Install to Workspace_ button and then click on _Allow_
+1. In _Basic Information_ Generate an app level token for the `connections.write` scope. Give it an arbitrary name.
+1. Now click _Install App_. Then click the _Install to Workspace_ button and then click on _Allow_
 
 ### Prepare the Slack app metadata and deploy
 
@@ -43,7 +43,15 @@ Note: if you're using scratch orgs, you'll have to accept terms in your Dev Hub
 git clone https://github.com/albarivas/ready-to-fly-sdk
 ```
 
-1. Open [ReadyToFlyPlaceHolder.slackapp-meta.xml](./force-app/main/default/slackapps/ReadyToFlyPlaceHolder.slackapp-meta.xml) and modify the secrets that you can copy from the _Basic Information_ tab of your app at api.slack.com. Rename the file to be called `ReadyToFly.slackapp-meta.xml`. This file is ignored and won't be commited to the repo.
+1. Open [ReadyToFlyPlaceHolder.slackapp-meta.xml](./force-app/main/default/slackapps/ReadyToFlyPlaceHolder.slackapp-meta.xml) and modify the secrets that you can copy from the _Basic Information_ tab of your app at api.slack.com:
+
+-   appKey: App ID
+-   appToken: the value of the app-level token you've created
+-   clientKey: Client ID
+-   clientSecret: Client Secret
+-   signingSecret: Signing Secret
+
+Rename the file to be called `ReadyToFly.slackapp-meta.xml`. This file is ignored and won't be commited to the repo.
 
 1. Replace your team Id into [Slack_Workspace_ConfigurationPlaceHolder.Apex_SDK_Starter_Kit.md-meta.xml](./force-app/main/default/customMetadata/Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml). You can get it from the URL when you navigate to https://your_workspace.slack.com/. Rename the file to be called `Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml`. This file is ignored and won't be commited to the repo.
 
@@ -71,7 +79,7 @@ sfdx force:user:permset:assign --permsetname Ready_to_Fly
 sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
 
-1. Make sure your user has the System Permission `Connect to Slack`
+1. Go to your Slack workspace and click on "Add Apps". Select "Ready to Fly (SDK)". Go to the app home tab --> you should see a couple of travevl requests to review!
 
 ### Resources
 

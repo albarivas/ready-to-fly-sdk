@@ -1,79 +1,80 @@
 # apphome.view
-description: "Home page"
+description: 'Home page'
 schema:
-  properties:
-    headerText:
-      type: string
-      defaultValue: "Travel Requests to Review"
-    instanceUrl:
-      type: string
-      defaultValue: "Salesforce instance URL"
+    properties:
+        headerText:
+            type: string
+            defaultValue: 'Travel Requests to Review'
+        instanceUrl:
+            type: string
+            defaultValue: 'Salesforce instance URL'
 dataproviders:
-  records:
-    definition: "apex__DataProviderTravelRequests.getTravelRequestsToReview"
+    records:
+        definition: 'apex__DataProviderTravelRequests.getTravelRequestsToReview'
 components:
-  - definition: home
-    components:
-      - definition: actions
-        components:
-          - definition: select
-            properties:
-              name: "selectedView"
-              value: "requestsToReview"
-              placeholder: "Please select a view."
-              options:
-                - identifier: "myRequests"
-                  label: "My Travel Requests"
-                - identifier: "requestsToReview"
-                  label: "Travel Requests to Review"
-            events:
-              onchange:
-                definition: "apex__action__ActionDispatcherHomeSelectChange"
-      - definition: header
-        properties:
-          text: "{!view.properties.headerText}"
-      - definition: iteration
-        properties:
-          foreach: "{!records}"
-          foritem: "record"
-        components:
-          - definition: divider
-          - definition: section
-            properties:
-              text:
-                text: "*:airplane:{!record.Name}:* {!record.Description__c}\n
-                      *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
-                      *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
-                      *Cost:* {!record.Cost__c}\n
-                      *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejected','x','grey_question')}:\n
-                      *Owner:* {!record.Owner.Name}"
-                type: mrkdwn
+    - definition: home
+      components:
           - definition: actions
             components:
-              - definition: button
-                properties:
-                  label: "View Details"
-                  name: "viewDetails"
-                  url: "{!view.properties.instanceUrl}/{!record.Id}"
-              - definition: button
-                properties:
-                  label: "Reject"
-                  style: "danger"
-                  name: "reject"
-                  value: "{!record.Id}"
-                events:
-                  onclick:
-                    definition: "apex__action__ActionDispatcherModifyTravelRequest"
-                    properties:
-                      travelRequestNewStatus: "Rejected"
-              - definition: button
-                properties:
-                  label: "Approve"
-                  style: "primary"
-                  name: "approve"
-                  value: "{!record.Id}"
-                events:
-                  onclick:
-                    definition: "apex__action__ActionDispatcherModifyTravelRequest"
-                    properties:
-                      travelRequestNewStatus: "Approved"
+                - definition: select
+                  properties:
+                      name: 'selectedView'
+                      value: 'requestsToReview'
+                      placeholder: 'Please select a view.'
+                      options:
+                          - identifier: 'myRequests'
+                            label: 'My Travel Requests'
+                          - identifier: 'requestsToReview'
+                            label: 'Travel Requests to Review'
+                  events:
+                      onchange:
+                          definition: 'apex__action__ActionDispatcherHomeSelectChange'
+          - definition: header
+            properties:
+                text: '{!view.properties.headerText}'
+          - definition: iteration
+            properties:
+                foreach: '{!records}'
+                foritem: 'record'
+            components:
+                - definition: divider
+                - definition: section
+                  properties:
+                      text:
+                          text:
+                              "*:airplane:{!record.Name}:* {!record.Description__c}\n
+                              *From-To:* {!record.Origin__c} - {!record.Destination__c}\n
+                              *Dates:* {!record.Start_Date__c} - {!record.End_Date__c}\n
+                              *Cost:* {!record.Cost__c}\n
+                              *Status:* {!record.Status__c} :{!CASE(record.Status__c,'Approved','white_check_mark','Rejected','x','grey_question')}:\n
+                              *Owner:* {!record.Owner.Name}"
+                          type: mrkdwn
+                - definition: actions
+                  components:
+                      - definition: button
+                        properties:
+                            label: 'View Details'
+                            name: 'viewDetails'
+                            url: '{!view.properties.instanceUrl}/{!record.Id}'
+                      - definition: button
+                        properties:
+                            label: 'Reject'
+                            style: 'danger'
+                            name: 'reject'
+                            value: '{!record.Id}'
+                        events:
+                            onclick:
+                                definition: 'apex__action__ActionDispatcherModifyTravelRequest'
+                                properties:
+                                    travelRequestNewStatus: 'Rejected'
+                      - definition: button
+                        properties:
+                            label: 'Approve'
+                            style: 'primary'
+                            name: 'approve'
+                            value: '{!record.Id}'
+                        events:
+                            onclick:
+                                definition: 'apex__action__ActionDispatcherModifyTravelRequest'
+                                properties:
+                                    travelRequestNewStatus: 'Approved'

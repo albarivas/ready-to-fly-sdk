@@ -69,7 +69,7 @@ public with sharing class TestFactory {
             subordinate.FirstName = 'Cool';
             subordinate.LastName = 'Subordinate';
             subordinate.Email = 'coolsubordinate@trailhead.com';
-            subordinate.Alias = 'csubordinate';
+            subordinate.Alias = 'csubordi';
             subordinate.Username = subordinateName;
             subordinate.LocaleSidKey = 'en_US';
             subordinate.TimeZoneSidKey = 'GMT';

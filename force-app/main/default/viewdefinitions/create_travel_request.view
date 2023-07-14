@@ -1,77 +1,77 @@
-description: "View that creates a new Travel Request record by triggering an apex action on view submission."
+description: 'View that creates a new Travel Request record by triggering an apex action on view submission.'
 dataproviders:
     managers:
         definition: 'apex__DataProviderManagers.getManagers'
 components:
     - definition: modal
       properties:
-          title: "New Travel Request"
-          submitLabel: "Submit"
+          title: 'New Travel Request'
+          submitLabel: 'Submit'
       events:
           onsubmit:
               # definition maps to "ActionDispatcherSubmitTravelRequest" apex class implementing Slack.ActionDispatcher
-              definition: "apex__action__ActionDispatcherSubmitTravelRequest"
+              definition: 'apex__action__ActionDispatcherSubmitTravelRequest'
       components:
           - definition: input
             properties:
-                label: "Origin"
+                label: 'Origin'
                 required: true
             components:
                 - definition: textInput
                   properties:
-                      name: "Origin__c"
-                      placeholder: "Hawaii"
+                      name: 'Origin__c'
+                      placeholder: 'Hawaii'
           - definition: input
             properties:
-                label: "Destination"
+                label: 'Destination'
                 required: true
             components:
                 - definition: textInput
                   properties:
-                      name: "Destination__c"
-                      placeholder: "New Zealand"
+                      name: 'Destination__c'
+                      placeholder: 'New Zealand'
           - definition: input
             properties:
-                label: "Start Date"
+                label: 'Start Date'
                 required: true
             components:
                 - definition: datepicker
                   properties:
-                      name: "Start_Date__c"
-                      placeholder: "YYYY-MM-DD"
+                      name: 'Start_Date__c'
+                      placeholder: 'YYYY-MM-DD'
           - definition: input
             properties:
-                label: "End Date"
+                label: 'End Date'
                 required: true
             components:
                 - definition: datepicker
                   properties:
-                      name: "End_Date__c"
-                      placeholder: "YYYY-MM-DD"
+                      name: 'End_Date__c'
+                      placeholder: 'YYYY-MM-DD'
           - definition: input
             properties:
-                label: "Estimated Cost (USD)"
+                label: 'Estimated Cost (USD)'
                 required: true
             components:
                 - definition: textInput
                   properties:
-                      name: "Cost__c"
-                      placeholder: "3000"
+                      name: 'Cost__c'
+                      placeholder: '3000'
           - definition: input
             properties:
-                label: "Approver"
+                label: 'Approver'
                 required: true
             components:
                 - definition: select
                   properties:
-                      placeholder: "Select Approver..."
-                      name: "Approver__c"
-                      options: "{!managers}"
+                      placeholder: 'Select Approver...'
+                      name: 'Approver__c'
+                      options: '{!managers}'
           - definition: input
             properties:
-                label: "Description"
+                label: 'Description'
             components:
                 - definition: textInput
                   properties:
-                      name: "Description__c"
+                      name: 'Description__c'
                       multiline: true

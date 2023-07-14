@@ -79,6 +79,8 @@ sfdx force:user:permset:assign --permsetname Ready_to_Fly
 sfdx force:apex:execute --apexcodefile data/setup.apex
 ```
 
+Note: the test data creation class assumes there is a "Standard Platform User" profile in your org. Change it accordingly if that's not your case.
+
 1. Go to your Slack workspace and click on "Add Apps". Select "Ready to Fly (SDK)". Go to the app home tab --> you should see a couple of travevl requests to review!
 
 ### Resources

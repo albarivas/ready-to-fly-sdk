@@ -83,7 +83,7 @@ Note: the test data creation class assumes there is a "Standard Platform User" p
 
 1. Go to your Slack workspace and click on "Add Apps". Select "Ready to Fly (SDK)".
 
-NOTE: At the moment, it's not possible to authorize through the app home. Make sure to execute the /view-travel-request-status slash command to connect to the org for the first time instead.
+Make sure to execute the /view-travel-request-status slash command or the "Create Travel Request" global shortcut to connect to the org for the first time. Your app home won't work until you execute this step.
 
 Once done that, go to the app home tab --> you should see a couple of travevl requests to review!
 

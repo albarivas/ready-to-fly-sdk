@@ -45,7 +45,7 @@ git clone https://github.com/albarivas/ready-to-fly-sdk
 
 1. Open [ReadyToFlyPlaceHolder.slackapp-meta.xml](./force-app/main/default/slackapps/ReadyToFlyPlaceHolder.slackapp-meta.xml) and modify the secrets that you can copy from the _Basic Information_ tab of your app at api.slack.com. Rename the file to be called `ReadyToFly.slackapp-meta.xml`. This file is ignored and won't be commited to the repo.
 
-1. Replace your team Id into [Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml](./force-app/main/default/customMetadata/Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml). You can get it from the URL when you navigate to https://your_workspace.slack.com/.
+1. Replace your team Id into [Slack_Workspace_ConfigurationPlaceHolder.Apex_SDK_Starter_Kit.md-meta.xml](./force-app/main/default/customMetadata/Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml). You can get it from the URL when you navigate to https://your_workspace.slack.com/. Rename the file to be called `Slack_Workspace_Configuration.Apex_SDK_Starter_Kit.md-meta.xml`. This file is ignored and won't be commited to the repo.
 
 1. Deploy the code
 

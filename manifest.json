@@ -20,6 +20,15 @@
                 "callback_id": "apex-create-travel-request-global",
                 "description": "Create a travel request using a slack global shortcut."
             }
+        ],
+        "slash_commands": [
+            {
+                "command": "/view-travel-request-status",
+                "url": "https://slack-apps.salesforce.com:9443/a/APP_ID",
+                "description": "Allows to view travel requests status",
+                "usage_hint": "/view-travel-request-status travelRequestName",
+                "should_escape": false
+            }
         ]
     },
     "oauth_config": {

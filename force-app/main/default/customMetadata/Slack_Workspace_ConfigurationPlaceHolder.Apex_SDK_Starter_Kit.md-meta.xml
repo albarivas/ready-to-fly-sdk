@@ -8,6 +8,6 @@
     <protected>false</protected>
     <values>
         <field>TeamId__c</field>
-        <value xsi:type="xsd:string" />
+        <value xsi:type="xsd:string">YOUR_TEAM_ID</value>
     </values>
 </CustomMetadata>

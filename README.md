@@ -81,7 +81,11 @@ sfdx force:apex:execute --apexcodefile data/setup.apex
 
 Note: the test data creation class assumes there is a "Standard Platform User" profile in your org. Change it accordingly if that's not your case.
 
-1. Go to your Slack workspace and click on "Add Apps". Select "Ready to Fly (SDK)". Go to the app home tab --> you should see a couple of travevl requests to review!
+1. Go to your Slack workspace and click on "Add Apps". Select "Ready to Fly (SDK)".
+
+NOTE: At the moment, it's not possible to authorize through the app home. Make sure to execute the /view-travel-request-status slash command to connect to the org for the first time instead.
+
+Once done that, go to the app home tab --> you should see a couple of travevl requests to review!
 
 ### Resources
 
